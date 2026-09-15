@@ -1,4 +1,4 @@
-﻿namespace MaterialSkin.Controls
+namespace MaterialSkin.Controls
 {
     using System;
     using System.ComponentModel;
@@ -8,6 +8,24 @@
 
     public class MaterialCard : Panel, IMaterialControl
     {
+        private int _radius = 4;
+
+        [Category("Material Skin")]
+        [DefaultValue(4)]
+        [Description("Corner radius in pixels. Use 0 for square corners.")]
+        public int Radius
+        {
+            get { return _radius; }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Radius cannot be negative.");
+                if (_radius == value) return;
+                _radius = value;
+                Invalidate();
+                Parent?.Invalidate();
+            }
+        }
+
         [Browsable(false)]
         public int Depth { get; set; }
 
@@ -39,7 +57,7 @@
             Graphics gp = e.Graphics;
             Rectangle rect = new Rectangle(Location, ClientRectangle.Size);
             gp.SmoothingMode = SmoothingMode.AntiAlias;
-            DrawHelper.DrawSquareShadow(gp, rect);
+            DrawHelper.DrawSquareShadow(gp, rect, Radius);
         }
 
         protected override void InitLayout()
@@ -103,10 +121,10 @@
             RectangleF cardRectF = new RectangleF(ClientRectangle.Location, ClientRectangle.Size);
             cardRectF.X -= 0.5f;
             cardRectF.Y -= 0.5f;
-            GraphicsPath cardPath = DrawHelper.CreateRoundRect(cardRectF, 4);
+            GraphicsPath cardPath = DrawHelper.CreateRoundRect(cardRectF, Radius);
 
             // button shadow (blend with form shadow)
-            DrawHelper.DrawSquareShadow(g, ClientRectangle);
+            DrawHelper.DrawSquareShadow(g, ClientRectangle, Radius);
 
             // Draw card
             using (SolidBrush normalBrush = new SolidBrush(BackColor))

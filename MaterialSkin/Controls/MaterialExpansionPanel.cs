@@ -13,6 +13,24 @@ namespace MaterialSkin.Controls
 {
     public class MaterialExpansionPanel : Panel, IMaterialControl
     {
+        private int _radius = 2;
+
+        [Category("Material Skin")]
+        [DefaultValue(2)]
+        [Description("Corner radius in pixels. Use 0 for square corners.")]
+        public int Radius
+        {
+            get { return _radius; }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Radius cannot be negative.");
+                if (_radius == value) return;
+                _radius = value;
+                Invalidate();
+                Parent?.Invalidate();
+            }
+        }
+
 
         #region "Private members"
 
@@ -334,7 +352,7 @@ namespace MaterialSkin.Controls
             Graphics gp = e.Graphics;
             Rectangle rect = new Rectangle(Location, ClientRectangle.Size);
             gp.SmoothingMode = SmoothingMode.AntiAlias;
-            DrawHelper.DrawSquareShadow(gp, rect);
+            DrawHelper.DrawSquareShadow(gp, rect, Radius);
         }
 
 
@@ -461,10 +479,10 @@ namespace MaterialSkin.Controls
             RectangleF expansionPanelRectF = new RectangleF(ClientRectangle.Location, ClientRectangle.Size);
             expansionPanelRectF.X -= 0.5f;
             expansionPanelRectF.Y -= 0.5f;
-            GraphicsPath expansionPanelPath = DrawHelper.CreateRoundRect(expansionPanelRectF, 2);
+            GraphicsPath expansionPanelPath = DrawHelper.CreateRoundRect(expansionPanelRectF, Radius);
 
             // button shadow (blend with form shadow)
-            DrawHelper.DrawSquareShadow(g, ClientRectangle);
+            DrawHelper.DrawSquareShadow(g, ClientRectangle, Radius);
 
             // Draw expansion panel
             // Disabled
@@ -483,7 +501,7 @@ namespace MaterialSkin.Controls
                     RectangleF expansionPanelBorderRectF = new RectangleF(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 2, ClientRectangle.Height - 2);
                     expansionPanelBorderRectF.X -= 0.5f;
                     expansionPanelBorderRectF.Y -= 0.5f;
-                    GraphicsPath expansionPanelBoarderPath = DrawHelper.CreateRoundRect(expansionPanelBorderRectF, 2);
+                    GraphicsPath expansionPanelBoarderPath = DrawHelper.CreateRoundRect(expansionPanelBorderRectF, Radius);
 																					   
                     g.FillPath(SkinManager.ExpansionPanelFocusBrush, expansionPanelBoarderPath);
                 }

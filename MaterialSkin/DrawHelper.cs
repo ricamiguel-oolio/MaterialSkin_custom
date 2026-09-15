@@ -1,4 +1,4 @@
-﻿namespace MaterialSkin
+namespace MaterialSkin
 {
     using System.Drawing;
     using System.Drawing.Drawing2D;
@@ -20,6 +20,13 @@
         public static GraphicsPath CreateRoundRect(float x, float y, float width, float height, float radius)
         {
             var gp = new GraphicsPath();
+            if (width <= 0 || height <= 0) return gp;
+            radius = System.Math.Max(0, System.Math.Min(radius, System.Math.Min(width, height) / 2));
+            if (radius == 0)
+            {
+                gp.AddRectangle(new RectangleF(x, y, width, height));
+                return gp;
+            }
             gp.AddArc(x + width - (radius * 2), y, radius * 2, radius * 2, 270, 90);
             gp.AddArc(x + width - (radius * 2), y + height - (radius * 2), radius * 2, radius * 2, 0, 90);
             gp.AddArc(x, y + height - (radius * 2), radius * 2, radius * 2, 90, 90);
@@ -80,23 +87,26 @@
 
         public static void DrawSquareShadow(Graphics g, Rectangle bounds)
         {
-            using (SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(12, 0, 0, 0)))
-            {
-                GraphicsPath path;
-                path = DrawHelper.CreateRoundRect(new RectangleF(bounds.X - 3.5f, bounds.Y - 1.5f, bounds.Width + 6, bounds.Height + 6), 8);
-                g.FillPath(shadowBrush, path);
-                path = DrawHelper.CreateRoundRect(new RectangleF(bounds.X - 2.5f, bounds.Y - 1.5f, bounds.Width + 4, bounds.Height + 4), 6);
-                g.FillPath(shadowBrush, path);
-                path = DrawHelper.CreateRoundRect(new RectangleF(bounds.X - 1.5f, bounds.Y - 0.5f, bounds.Width + 2, bounds.Height + 2), 4);
-                g.FillPath(shadowBrush, path);
-                path = DrawHelper.CreateRoundRect(new RectangleF(bounds.X - 0.5f, bounds.Y + 1.5f, bounds.Width + 0, bounds.Height + 0), 4);
-                g.FillPath(shadowBrush, path);
-                path = DrawHelper.CreateRoundRect(new RectangleF(bounds.X - 0.5f, bounds.Y + 2.5f, bounds.Width + 0, bounds.Height + 0), 4);
-                g.FillPath(shadowBrush, path);
-                path.Dispose();
-            }
+            DrawSquareShadow(g, bounds, 4);
         }
 
+        public static void DrawSquareShadow(Graphics g, Rectangle bounds, float radius)
+        {
+            radius = System.Math.Max(0, System.Math.Min(radius, System.Math.Min(bounds.Width, bounds.Height) / 2f));
+            using (SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(12, 0, 0, 0)))
+            {
+                using (var path = CreateRoundRect(new RectangleF(bounds.X - 3.5f, bounds.Y - 1.5f, bounds.Width + 6, bounds.Height + 6), radius + 4))
+                    g.FillPath(shadowBrush, path);
+                using (var path = CreateRoundRect(new RectangleF(bounds.X - 2.5f, bounds.Y - 1.5f, bounds.Width + 4, bounds.Height + 4), radius + 2))
+                    g.FillPath(shadowBrush, path);
+                using (var path = CreateRoundRect(new RectangleF(bounds.X - 1.5f, bounds.Y - 0.5f, bounds.Width + 2, bounds.Height + 2), radius))
+                    g.FillPath(shadowBrush, path);
+                using (var path = CreateRoundRect(new RectangleF(bounds.X - 0.5f, bounds.Y + 1.5f, bounds.Width, bounds.Height), radius))
+                    g.FillPath(shadowBrush, path);
+                using (var path = CreateRoundRect(new RectangleF(bounds.X - 0.5f, bounds.Y + 2.5f, bounds.Width, bounds.Height), radius))
+                    g.FillPath(shadowBrush, path);
+            }
+        }
         public static void DrawRoundShadow(Graphics g, Rectangle bounds)
         {
             using (SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(12, 0, 0, 0)))

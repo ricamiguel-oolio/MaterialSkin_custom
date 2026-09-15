@@ -1,4 +1,4 @@
-﻿namespace MaterialSkin.Controls
+namespace MaterialSkin.Controls
 {
     using MaterialSkin.Animations;
     using System;
@@ -15,7 +15,150 @@
     /// </summary>
     public class MaterialButton : Button, IMaterialControl
     {
+        private int _radius = 10;
 
+        [Category("Material Skin")]
+        [DefaultValue(10)]
+        [Description("Corner radius in pixels. Use 0 for square corners.")]
+        public int Radius
+        {
+            get { return _radius; }
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Radius cannot be negative.");
+                if (_radius == value) return;
+                _radius = value;
+                Invalidate();
+                Parent?.Invalidate();
+            }
+        }
+
+
+        [Browsable(true)]
+        [Category("Appearance")]
+        [DefaultValue(null)]
+        [Description("Background image drawn inside the button's rounded corners.")]
+        public override Image BackgroundImage
+        {
+            get { return base.BackgroundImage; }
+            set { base.BackgroundImage = value; Invalidate(); }
+        }
+
+        [Browsable(true)]
+        [Category("Appearance")]
+        [DefaultValue(ImageLayout.Tile)]
+        public override ImageLayout BackgroundImageLayout
+        {
+            get { return base.BackgroundImageLayout; }
+            set { base.BackgroundImageLayout = value; Invalidate(); }
+        }
+
+        private Size _backgroundImageSize = Size.Empty;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Size), "0, 0")]
+        [Description("Background image size in pixels. Set both dimensions to 0 to use BackgroundImageLayout. A positive size overrides layout scaling; Center and Zoom remain centered, and Tile repeats at this size.")]
+        public Size BackgroundImageSize
+        {
+            get { return _backgroundImageSize; }
+            set
+            {
+                if (value != Size.Empty && (value.Width <= 0 || value.Height <= 0))
+                    throw new ArgumentOutOfRangeException(nameof(value), "Use 0, 0 for automatic sizing, or positive width and height.");
+                if (_backgroundImageSize == value) return;
+                _backgroundImageSize = value;
+                Invalidate();
+            }
+        }
+        private Point _imageOffset;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("Background image offset in pixels from its layout position. Positive X moves right; positive Y moves down.")]
+        public Point BackgroundImageOffset
+        {
+            get { return _imageOffset; }
+            set { if (_imageOffset == value) return; _imageOffset = value; Invalidate(); }
+        }
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("Compatibility alias for BackgroundImageOffset.")]
+        public Point ImageOffset
+        {
+            get { return BackgroundImageOffset; }
+            set { BackgroundImageOffset = value; }
+        }
+        private Point _textOffset;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Point), "0, 0")]
+        [Description("Text offset in pixels. Positive X moves right; positive Y moves down.")]
+        public Point TextOffset
+        {
+            get { return _textOffset; }
+            set { if (_textOffset == value) return; _textOffset = value; Invalidate(); }
+        }
+
+        private void DrawButtonBackgroundImage(Graphics g, GraphicsPath buttonPath)
+        {
+            var background = BackgroundImage;
+            if (background == null || Width <= 0 || Height <= 0) return;
+
+            var state = g.Save();
+            try
+            {
+                g.SetClip(buttonPath, CombineMode.Intersect);
+                if (BackgroundImageLayout == ImageLayout.Tile)
+                {
+                    using (var brush = new TextureBrush(background, WrapMode.Tile))
+                    {
+                        if (BackgroundImageSize != Size.Empty)
+                        {
+                            using (var transform = new Matrix(
+                                BackgroundImageSize.Width / (float)background.Width, 0,
+                                0, BackgroundImageSize.Height / (float)background.Height,
+                                BackgroundImageOffset.X, BackgroundImageOffset.Y))
+                                brush.Transform = transform;
+                        }
+                        else
+                        {
+                            brush.TranslateTransform(BackgroundImageOffset.X, BackgroundImageOffset.Y);
+                        }
+                        g.FillRectangle(brush, ClientRectangle);
+                    }
+                    return;
+                }
+
+                var destination = new Rectangle(0, 0, background.Width, background.Height);
+                switch (BackgroundImageLayout)
+                {
+                    case ImageLayout.Stretch:
+                        destination = ClientRectangle;
+                        break;
+                    case ImageLayout.Center:
+                        destination.X = (Width - background.Width) / 2;
+                        destination.Y = (Height - background.Height) / 2;
+                        break;
+                    case ImageLayout.Zoom:
+                        float scale = Math.Min(Width / (float)background.Width, Height / (float)background.Height);
+                        destination.Size = new Size(Math.Max(1, (int)(background.Width * scale)),
+                            Math.Max(1, (int)(background.Height * scale)));
+                        destination.Location = new Point((Width - destination.Width) / 2, (Height - destination.Height) / 2);
+                        break;
+                }
+                if (BackgroundImageSize != Size.Empty)
+                {
+                    destination = new Rectangle(Point.Empty, BackgroundImageSize);
+                    if (BackgroundImageLayout == ImageLayout.Center || BackgroundImageLayout == ImageLayout.Zoom)
+                        destination.Location = new Point((Width - destination.Width) / 2, (Height - destination.Height) / 2);
+                }
+                destination.Offset(BackgroundImageOffset);
+                g.DrawImage(background, destination, 0, 0, background.Width, background.Height, GraphicsUnit.Pixel);
+            }
+            finally
+            {
+                g.Restore(state);
+            }
+        }
         private const int ICON_SIZE = 24;
         private const int MINIMUMWIDTH = 64;
         private const int MINIMUMWIDTHICONONLY = 36; //64;
@@ -102,10 +245,11 @@
             set 
             { 
                 _density = value;
-                if (_density== MaterialButtonDensity.Dense)
-                    Size = new Size(Size.Width, HEIGHTDENSE);
-                else
-                    Size = new Size(Size.Width, HEIGHTDEFAULT);
+                if (AutoSize)
+                {
+                    Height = _density == MaterialButtonDensity.Dense ? HEIGHTDENSE : HEIGHTDEFAULT;
+                    Parent?.PerformLayout();
+                }
                 Invalidate();
             }
         }
@@ -221,7 +365,7 @@
             }
         }
 
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public override bool AutoSize
         {
             get => base.AutoSize;
@@ -271,7 +415,8 @@
             _animationManager.OnAnimationProgress += sender => Invalidate();
 
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            AutoSize = true;
+            AutoSize = false;
+            Size = new Size(MINIMUMWIDTH, HEIGHTDEFAULT);
             Margin = new Padding(4, 6, 4, 6);
             Padding = new Padding(0);
         }
@@ -316,9 +461,16 @@
             Graphics gp = e.Graphics;
             Rectangle rect = new Rectangle(Location, ClientRectangle.Size);
             gp.SmoothingMode = SmoothingMode.AntiAlias;
-            DrawHelper.DrawSquareShadow(gp, rect);
+            DrawHelper.DrawSquareShadow(gp, rect, Radius);
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            preProcessIcons();
+            Invalidate();
+            if (DrawShadows) Parent?.Invalidate();
+        }
         private void preProcessIcons()
         {
             if (Icon == null) return;
@@ -427,10 +579,10 @@
             RectangleF buttonRectF = new RectangleF(ClientRectangle.Location, ClientRectangle.Size);
             buttonRectF.X -= 0.5f;
             buttonRectF.Y -= 0.5f;
-            GraphicsPath buttonPath = DrawHelper.CreateRoundRect(buttonRectF, 4);
+            GraphicsPath buttonPath = DrawHelper.CreateRoundRect(buttonRectF, Radius);
 
             // button shadow (blend with form shadow)
-            DrawHelper.DrawSquareShadow(g, ClientRectangle);
+            DrawHelper.DrawSquareShadow(g, ClientRectangle, Radius);
 
             if (Type == MaterialButtonType.Contained)
             {
@@ -461,6 +613,8 @@
             {
                 g.Clear(Parent.BackColor);
             }
+
+            DrawButtonBackgroundImage(g, buttonPath);
 
             //Hover
             if (hoverAnimProgress > 0)
@@ -503,7 +657,8 @@
             //Ripple
             if (_animationManager.IsAnimating())
             {
-                g.Clip = new Region(buttonRectF);
+                var rippleState = g.Save();
+                g.SetClip(buttonPath, CombineMode.Intersect);
                 for (var i = 0; i < _animationManager.GetAnimationCount(); i++)
                 {
                     var animationValue = _animationManager.GetProgress(i);
@@ -521,7 +676,7 @@
                         g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize));
                     }
                 }
-                g.ResetClip();
+                g.Restore(rippleState);
             }
 
             //Text
@@ -531,6 +686,8 @@
                 textRect.Width -= 8 + ICON_SIZE + 4 + 8; // left padding + icon width + space between Icon and Text + right padding
                 textRect.X += 8 + ICON_SIZE + 4; // left padding + icon width + space between Icon and Text
             }
+
+            textRect.Offset(TextOffset);
 
             Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
                 UseAccentColor ? SkinManager.ColorScheme.AccentColor : // Outline or Text and accent and emphasis
@@ -566,6 +723,7 @@
             {
                 g.FillRectangle(iconsBrushes, iconRect);
             }
+            buttonPath.Dispose();
         }
 
         /// <summary>
@@ -584,6 +742,8 @@
         /// <returns>The <see cref="Size"/></returns>
         public override Size GetPreferredSize(Size proposedSize)
         {
+            if (!AutoSize) return Size;
+
             Size s = base.GetPreferredSize(proposedSize);
 
             // Provides extra space for proper padding for content
@@ -600,12 +760,12 @@
             {
                 s.Width = (int)Math.Ceiling(_textSize.Width);
                 s.Width += extra;
-                s.Height = HEIGHTDEFAULT;
+                s.Height = Density == MaterialButtonDensity.Dense ? HEIGHTDENSE : HEIGHTDEFAULT;
             }
             else
             {
                 s.Width += extra;
-                s.Height = HEIGHTDEFAULT;
+                s.Height = Density == MaterialButtonDensity.Dense ? HEIGHTDENSE : HEIGHTDEFAULT;
             }
             if (Icon != null && Text.Length==0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
             else if (s.Width < MINIMUMWIDTH) s.Width = MINIMUMWIDTH;
