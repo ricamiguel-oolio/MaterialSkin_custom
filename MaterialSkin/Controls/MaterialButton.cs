@@ -98,6 +98,24 @@ namespace MaterialSkin.Controls
             set { if (_textOffset == value) return; _textOffset = value; Invalidate(); }
         }
 
+        private Color _UseAccentColor_Color = Color.White;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Color), "")]
+        public Color UseAccentColor_Color
+        {
+            get { return _UseAccentColor_Color; }
+            set { if (_UseAccentColor_Color == value) return; _UseAccentColor_Color = value; Invalidate(); }
+        }
+
+        private Color _HighEmphasisColor = Color.White;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Color), "")]
+        public Color HighEmphasisColor
+        {
+            get { return _HighEmphasisColor; }
+            set { if (_HighEmphasisColor == value) return; _HighEmphasisColor = value; Invalidate(); }
+        }
+
         private void DrawButtonBackgroundImage(Graphics g, GraphicsPath buttonPath)
         {
             var background = BackgroundImage;
@@ -572,6 +590,8 @@ namespace MaterialSkin.Controls
 
             double hoverAnimProgress = _hoverAnimationManager.GetProgress();
             double focusAnimProgress = _focusAnimationManager.GetProgress();
+            SolidBrush colorBack = new SolidBrush(UseAccentColor ? UseAccentColor_Color : BackColor);
+            SolidBrush colorEmph = new SolidBrush(HighEmphasis ? HighEmphasisColor : BackColor);
 
             g.Clear(Parent.BackColor);
 
@@ -598,7 +618,7 @@ namespace MaterialSkin.Controls
                 // High emphasis
                 else if (HighEmphasis)
                 {
-                    g.FillPath(UseAccentColor ? SkinManager.ColorScheme.AccentBrush : SkinManager.ColorScheme.PrimaryBrush, buttonPath);
+                    g.FillPath(colorEmph, buttonPath);
                 }
                 // Mormal
                 else
@@ -608,10 +628,6 @@ namespace MaterialSkin.Controls
                         g.FillPath(normalBrush, buttonPath);
                     }
                 }
-            }
-            else
-            {
-                g.Clear(Parent.BackColor);
             }
 
             DrawButtonBackgroundImage(g, buttonPath);
@@ -689,14 +705,7 @@ namespace MaterialSkin.Controls
 
             textRect.Offset(TextOffset);
 
-            Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
-                UseAccentColor ? SkinManager.ColorScheme.AccentColor : // Outline or Text and accent and emphasis
-                NoAccentTextColor == Color.Empty ? 
-                SkinManager.ColorScheme.PrimaryColor :  // Outline or Text and emphasis
-                NoAccentTextColor : // User defined Outline or Text and emphasis
-                SkinManager.ColorScheme.TextColor : // Contained and Emphasis
-                SkinManager.TextHighEmphasisColor) : // Cointained and accent
-                SkinManager.TextDisabledOrHintColor; // Disabled
+            Color textColor = ForeColor;
 
             using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
             {

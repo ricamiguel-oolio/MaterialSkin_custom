@@ -35,24 +35,24 @@ namespace MaterialSkinExample
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            MaterialSkin.MaterialListBoxItem materialListBoxItem55 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem56 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem57 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem58 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem59 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem60 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem61 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem62 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem63 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem64 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem65 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem66 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem67 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem68 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem69 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem70 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem71 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem72 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem1 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem2 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem3 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem4 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem5 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem6 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem7 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem8 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem9 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem10 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem11 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem12 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem13 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem14 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem15 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem16 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem17 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem18 = new MaterialSkin.MaterialListBoxItem();
             this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
@@ -332,10 +332,14 @@ namespace MaterialSkinExample
             // 
             // materialButton25
             // 
+            this.materialButton25.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton25.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton25.BackColor = System.Drawing.Color.Black;
             this.materialButton25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.materialButton25.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton25.Depth = 0;
+            this.materialButton25.HighEmphasisColor = System.Drawing.Color.White;
+            this.materialButton25.ForeColor = System.Drawing.Color.Black;
             this.materialButton25.HighEmphasis = true;
             this.materialButton25.Icon = null;
             this.materialButton25.Location = new System.Drawing.Point(450, 459);
@@ -347,15 +351,17 @@ namespace MaterialSkinExample
             this.materialButton25.TabIndex = 41;
             this.materialButton25.Text = "Show Dialog";
             this.materialButton25.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton25.UseAccentColor = false;
-            this.materialButton25.UseVisualStyleBackColor = true;
+            this.materialButton25.UseAccentColor = true;
+            this.materialButton25.UseVisualStyleBackColor = false;
             this.materialButton25.Click += new System.EventHandler(this.materialButton25_Click);
             // 
             // materialButton6
             // 
+            this.materialButton6.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton6.Depth = 0;
+            this.materialButton6.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.Location = new System.Drawing.Point(249, 459);
@@ -428,9 +434,11 @@ namespace MaterialSkinExample
             // 
             // MaterialButton3
             // 
+            this.MaterialButton3.UseAccentColor_Color = System.Drawing.Color.White;
             this.MaterialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MaterialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.MaterialButton3.Depth = 0;
+            this.MaterialButton3.HighEmphasisColor = System.Drawing.Color.White;
             this.MaterialButton3.HighEmphasis = true;
             this.MaterialButton3.Icon = null;
             this.MaterialButton3.Location = new System.Drawing.Point(22, 459);
@@ -543,9 +551,11 @@ namespace MaterialSkinExample
             // 
             // materialButton7
             // 
+            this.materialButton7.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton7.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton7.Depth = 0;
+            this.materialButton7.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton7.HighEmphasis = true;
             this.materialButton7.Icon = null;
             this.materialButton7.Location = new System.Drawing.Point(180, 156);
@@ -597,9 +607,11 @@ namespace MaterialSkinExample
             // 
             // MaterialButton4
             // 
+            this.MaterialButton4.UseAccentColor_Color = System.Drawing.Color.White;
             this.MaterialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MaterialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.MaterialButton4.Depth = 0;
+            this.MaterialButton4.HighEmphasisColor = System.Drawing.Color.White;
             this.MaterialButton4.HighEmphasis = true;
             this.MaterialButton4.Icon = null;
             this.MaterialButton4.Location = new System.Drawing.Point(22, 156);
@@ -653,9 +665,11 @@ namespace MaterialSkinExample
             // 
             // materialButton23
             // 
+            this.materialButton23.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton23.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton23.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton23.Depth = 0;
+            this.materialButton23.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton23.HighEmphasis = false;
             this.materialButton23.Icon = global::MaterialSkinExample.Properties.Resources.baseline_fingerprint_black_24dp;
             this.materialButton23.Location = new System.Drawing.Point(280, 221);
@@ -755,11 +769,13 @@ namespace MaterialSkinExample
             // 
             // materialButton24
             // 
+            this.materialButton24.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton24.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton24.BackgroundImage = global::MaterialSkinExample.Properties.Resources.baseline_build_black_24dp;
             this.materialButton24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.materialButton24.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton24.Depth = 0;
+            this.materialButton24.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton24.HighEmphasis = false;
             this.materialButton24.Icon = global::MaterialSkinExample.Properties.Resources.baseline_bluetooth_black_24dp;
             this.materialButton24.Location = new System.Drawing.Point(533, 100);
@@ -776,9 +792,11 @@ namespace MaterialSkinExample
             // 
             // materialButton22
             // 
+            this.materialButton22.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton22.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton22.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton22.Depth = 0;
+            this.materialButton22.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton22.HighEmphasis = false;
             this.materialButton22.Icon = global::MaterialSkinExample.Properties.Resources.baseline_favorite_border_black_24dp;
             this.materialButton22.Location = new System.Drawing.Point(32, 221);
@@ -807,9 +825,11 @@ namespace MaterialSkinExample
             // 
             // materialButton19
             // 
+            this.materialButton19.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton19.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton19.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton19.Depth = 0;
+            this.materialButton19.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton19.HighEmphasis = false;
             this.materialButton19.Icon = null;
             this.materialButton19.Location = new System.Drawing.Point(522, 365);
@@ -826,9 +846,11 @@ namespace MaterialSkinExample
             // 
             // materialButton20
             // 
+            this.materialButton20.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton20.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton20.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton20.Depth = 0;
+            this.materialButton20.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton20.HighEmphasis = false;
             this.materialButton20.Icon = null;
             this.materialButton20.Location = new System.Drawing.Point(32, 365);
@@ -845,9 +867,11 @@ namespace MaterialSkinExample
             // 
             // materialButton21
             // 
+            this.materialButton21.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton21.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton21.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton21.Depth = 0;
+            this.materialButton21.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton21.HighEmphasis = false;
             this.materialButton21.Icon = null;
             this.materialButton21.Location = new System.Drawing.Point(280, 365);
@@ -864,9 +888,11 @@ namespace MaterialSkinExample
             // 
             // materialButton5
             // 
+            this.materialButton5.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton5.Depth = 0;
+            this.materialButton5.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton5.HighEmphasis = true;
             this.materialButton5.Icon = null;
             this.materialButton5.Location = new System.Drawing.Point(522, 269);
@@ -883,9 +909,11 @@ namespace MaterialSkinExample
             // 
             // materialButton8
             // 
+            this.materialButton8.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton8.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton8.Depth = 0;
+            this.materialButton8.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton8.HighEmphasis = true;
             this.materialButton8.Icon = null;
             this.materialButton8.Location = new System.Drawing.Point(32, 269);
@@ -902,9 +930,11 @@ namespace MaterialSkinExample
             // 
             // materialButton9
             // 
+            this.materialButton9.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton9.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton9.Depth = 0;
+            this.materialButton9.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton9.HighEmphasis = true;
             this.materialButton9.Icon = null;
             this.materialButton9.Location = new System.Drawing.Point(280, 269);
@@ -921,9 +951,11 @@ namespace MaterialSkinExample
             // 
             // materialButton18
             // 
+            this.materialButton18.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton18.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton18.Depth = 0;
+            this.materialButton18.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton18.Enabled = false;
             this.materialButton18.HighEmphasis = false;
             this.materialButton18.Icon = null;
@@ -941,9 +973,11 @@ namespace MaterialSkinExample
             // 
             // materialButton17
             // 
+            this.materialButton17.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton17.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton17.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton17.Depth = 0;
+            this.materialButton17.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton17.HighEmphasis = false;
             this.materialButton17.Icon = null;
             this.materialButton17.Location = new System.Drawing.Point(522, 413);
@@ -960,9 +994,11 @@ namespace MaterialSkinExample
             // 
             // materialButton16
             // 
+            this.materialButton16.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton16.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton16.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton16.Depth = 0;
+            this.materialButton16.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton16.HighEmphasis = true;
             this.materialButton16.Icon = null;
             this.materialButton16.Location = new System.Drawing.Point(522, 317);
@@ -979,9 +1015,11 @@ namespace MaterialSkinExample
             // 
             // materialButton15
             // 
+            this.materialButton15.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton15.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton15.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton15.Depth = 0;
+            this.materialButton15.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton15.HighEmphasis = false;
             this.materialButton15.Icon = null;
             this.materialButton15.Location = new System.Drawing.Point(32, 413);
@@ -998,9 +1036,11 @@ namespace MaterialSkinExample
             // 
             // materialButton14
             // 
+            this.materialButton14.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton14.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton14.Depth = 0;
+            this.materialButton14.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton14.HighEmphasis = true;
             this.materialButton14.Icon = null;
             this.materialButton14.Location = new System.Drawing.Point(32, 317);
@@ -1017,9 +1057,11 @@ namespace MaterialSkinExample
             // 
             // materialButton13
             // 
+            this.materialButton13.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton13.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton13.Depth = 0;
+            this.materialButton13.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton13.Enabled = false;
             this.materialButton13.HighEmphasis = false;
             this.materialButton13.Icon = null;
@@ -1037,9 +1079,11 @@ namespace MaterialSkinExample
             // 
             // materialButton12
             // 
+            this.materialButton12.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton12.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton12.Depth = 0;
+            this.materialButton12.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton12.Enabled = false;
             this.materialButton12.HighEmphasis = false;
             this.materialButton12.Icon = null;
@@ -1057,9 +1101,11 @@ namespace MaterialSkinExample
             // 
             // materialButton11
             // 
+            this.materialButton11.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton11.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton11.Depth = 0;
+            this.materialButton11.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton11.HighEmphasis = false;
             this.materialButton11.Icon = null;
             this.materialButton11.Location = new System.Drawing.Point(280, 413);
@@ -1076,9 +1122,11 @@ namespace MaterialSkinExample
             // 
             // materialButton10
             // 
+            this.materialButton10.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton10.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton10.Depth = 0;
+            this.materialButton10.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton10.HighEmphasis = true;
             this.materialButton10.Icon = null;
             this.materialButton10.Location = new System.Drawing.Point(280, 317);
@@ -2382,9 +2430,11 @@ namespace MaterialSkinExample
             // 
             // materialFlatButton2
             // 
+            this.materialFlatButton2.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialFlatButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialFlatButton2.Depth = 0;
+            this.materialFlatButton2.HighEmphasisColor = System.Drawing.Color.White;
             this.materialFlatButton2.HighEmphasis = false;
             this.materialFlatButton2.Icon = global::MaterialSkinExample.Properties.Resources.minus;
             this.materialFlatButton2.Location = new System.Drawing.Point(29, 156);
@@ -2431,10 +2481,12 @@ namespace MaterialSkinExample
             // 
             // MaterialButton2
             // 
+            this.MaterialButton2.UseAccentColor_Color = System.Drawing.Color.White;
             this.MaterialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MaterialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MaterialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.MaterialButton2.Depth = 0;
+            this.MaterialButton2.HighEmphasisColor = System.Drawing.Color.White;
             this.MaterialButton2.HighEmphasis = true;
             this.MaterialButton2.Icon = global::MaterialSkinExample.Properties.Resources.round_add_black_24dp;
             this.MaterialButton2.Location = new System.Drawing.Point(755, 156);
@@ -2558,10 +2610,12 @@ namespace MaterialSkinExample
             // 
             // materialButton1
             // 
+            this.materialButton1.UseAccentColor_Color = System.Drawing.Color.White;
             this.materialButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton1.Depth = 0;
+            this.materialButton1.HighEmphasisColor = System.Drawing.Color.White;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
             this.materialButton1.Location = new System.Drawing.Point(220, 131);
@@ -2785,30 +2839,30 @@ namespace MaterialSkinExample
             this.materialListBox3.BorderColor = System.Drawing.Color.LightGray;
             this.materialListBox3.Depth = 0;
             this.materialListBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            materialListBoxItem55.SecondaryText = "A very very long secondary text to display 1 ";
-            materialListBoxItem55.Tag = null;
-            materialListBoxItem55.Text = "ListBoxItem1";
-            materialListBoxItem56.SecondaryText = "A very very long secondary text to display 2";
-            materialListBoxItem56.Tag = null;
-            materialListBoxItem56.Text = "ListBoxItem2";
-            materialListBoxItem57.SecondaryText = "A very very long secondary text to display 3";
-            materialListBoxItem57.Tag = null;
-            materialListBoxItem57.Text = "ListBoxItem3";
-            materialListBoxItem58.SecondaryText = "A very very long secondary text to display 4";
-            materialListBoxItem58.Tag = null;
-            materialListBoxItem58.Text = "ListBoxItem4";
-            materialListBoxItem59.SecondaryText = "A very very long secondary text to display 5";
-            materialListBoxItem59.Tag = null;
-            materialListBoxItem59.Text = "ListBoxItem5";
-            materialListBoxItem60.SecondaryText = "A very very long secondary text to display 6";
-            materialListBoxItem60.Tag = null;
-            materialListBoxItem60.Text = "ListBoxItem6";
-            this.materialListBox3.Items.Add(materialListBoxItem55);
-            this.materialListBox3.Items.Add(materialListBoxItem56);
-            this.materialListBox3.Items.Add(materialListBoxItem57);
-            this.materialListBox3.Items.Add(materialListBoxItem58);
-            this.materialListBox3.Items.Add(materialListBoxItem59);
-            this.materialListBox3.Items.Add(materialListBoxItem60);
+            materialListBoxItem1.SecondaryText = "A very very long secondary text to display 1 ";
+            materialListBoxItem1.Tag = null;
+            materialListBoxItem1.Text = "ListBoxItem1";
+            materialListBoxItem2.SecondaryText = "A very very long secondary text to display 2";
+            materialListBoxItem2.Tag = null;
+            materialListBoxItem2.Text = "ListBoxItem2";
+            materialListBoxItem3.SecondaryText = "A very very long secondary text to display 3";
+            materialListBoxItem3.Tag = null;
+            materialListBoxItem3.Text = "ListBoxItem3";
+            materialListBoxItem4.SecondaryText = "A very very long secondary text to display 4";
+            materialListBoxItem4.Tag = null;
+            materialListBoxItem4.Text = "ListBoxItem4";
+            materialListBoxItem5.SecondaryText = "A very very long secondary text to display 5";
+            materialListBoxItem5.Tag = null;
+            materialListBoxItem5.Text = "ListBoxItem5";
+            materialListBoxItem6.SecondaryText = "A very very long secondary text to display 6";
+            materialListBoxItem6.Tag = null;
+            materialListBoxItem6.Text = "ListBoxItem6";
+            this.materialListBox3.Items.Add(materialListBoxItem1);
+            this.materialListBox3.Items.Add(materialListBoxItem2);
+            this.materialListBox3.Items.Add(materialListBoxItem3);
+            this.materialListBox3.Items.Add(materialListBoxItem4);
+            this.materialListBox3.Items.Add(materialListBoxItem5);
+            this.materialListBox3.Items.Add(materialListBoxItem6);
             this.materialListBox3.Location = new System.Drawing.Point(579, 132);
             this.materialListBox3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialListBox3.Name = "materialListBox3";
@@ -2824,30 +2878,30 @@ namespace MaterialSkinExample
             this.materialListBox2.BorderColor = System.Drawing.Color.LightGray;
             this.materialListBox2.Depth = 0;
             this.materialListBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            materialListBoxItem61.SecondaryText = "Secondary text1";
-            materialListBoxItem61.Tag = null;
-            materialListBoxItem61.Text = "ListBoxItem1";
-            materialListBoxItem62.SecondaryText = "Secondary text2";
-            materialListBoxItem62.Tag = null;
-            materialListBoxItem62.Text = "ListBoxItem2";
-            materialListBoxItem63.SecondaryText = "Secondary text3";
-            materialListBoxItem63.Tag = null;
-            materialListBoxItem63.Text = "ListBoxItem3";
-            materialListBoxItem64.SecondaryText = "Secondary text4";
-            materialListBoxItem64.Tag = null;
-            materialListBoxItem64.Text = "ListBoxItem4";
-            materialListBoxItem65.SecondaryText = "Secondary text5";
-            materialListBoxItem65.Tag = null;
-            materialListBoxItem65.Text = "ListBoxItem5";
-            materialListBoxItem66.SecondaryText = "Secondary text6";
-            materialListBoxItem66.Tag = null;
-            materialListBoxItem66.Text = "ListBoxItem6";
-            this.materialListBox2.Items.Add(materialListBoxItem61);
-            this.materialListBox2.Items.Add(materialListBoxItem62);
-            this.materialListBox2.Items.Add(materialListBoxItem63);
-            this.materialListBox2.Items.Add(materialListBoxItem64);
-            this.materialListBox2.Items.Add(materialListBoxItem65);
-            this.materialListBox2.Items.Add(materialListBoxItem66);
+            materialListBoxItem7.SecondaryText = "Secondary text1";
+            materialListBoxItem7.Tag = null;
+            materialListBoxItem7.Text = "ListBoxItem1";
+            materialListBoxItem8.SecondaryText = "Secondary text2";
+            materialListBoxItem8.Tag = null;
+            materialListBoxItem8.Text = "ListBoxItem2";
+            materialListBoxItem9.SecondaryText = "Secondary text3";
+            materialListBoxItem9.Tag = null;
+            materialListBoxItem9.Text = "ListBoxItem3";
+            materialListBoxItem10.SecondaryText = "Secondary text4";
+            materialListBoxItem10.Tag = null;
+            materialListBoxItem10.Text = "ListBoxItem4";
+            materialListBoxItem11.SecondaryText = "Secondary text5";
+            materialListBoxItem11.Tag = null;
+            materialListBoxItem11.Text = "ListBoxItem5";
+            materialListBoxItem12.SecondaryText = "Secondary text6";
+            materialListBoxItem12.Tag = null;
+            materialListBoxItem12.Text = "ListBoxItem6";
+            this.materialListBox2.Items.Add(materialListBoxItem7);
+            this.materialListBox2.Items.Add(materialListBoxItem8);
+            this.materialListBox2.Items.Add(materialListBoxItem9);
+            this.materialListBox2.Items.Add(materialListBoxItem10);
+            this.materialListBox2.Items.Add(materialListBoxItem11);
+            this.materialListBox2.Items.Add(materialListBoxItem12);
             this.materialListBox2.Location = new System.Drawing.Point(306, 132);
             this.materialListBox2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialListBox2.Name = "materialListBox2";
@@ -2864,30 +2918,30 @@ namespace MaterialSkinExample
             this.materialListBox1.BorderColor = System.Drawing.Color.LightGray;
             this.materialListBox1.Depth = 0;
             this.materialListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            materialListBoxItem67.SecondaryText = "";
-            materialListBoxItem67.Tag = null;
-            materialListBoxItem67.Text = "ListBoxItem1";
-            materialListBoxItem68.SecondaryText = "";
-            materialListBoxItem68.Tag = null;
-            materialListBoxItem68.Text = "ListBoxItem2";
-            materialListBoxItem69.SecondaryText = "";
-            materialListBoxItem69.Tag = null;
-            materialListBoxItem69.Text = "ListBoxItem3";
-            materialListBoxItem70.SecondaryText = "";
-            materialListBoxItem70.Tag = null;
-            materialListBoxItem70.Text = "ListBoxItem4";
-            materialListBoxItem71.SecondaryText = "";
-            materialListBoxItem71.Tag = null;
-            materialListBoxItem71.Text = "ListBoxItem5";
-            materialListBoxItem72.SecondaryText = "";
-            materialListBoxItem72.Tag = null;
-            materialListBoxItem72.Text = "ListBoxItem6";
-            this.materialListBox1.Items.Add(materialListBoxItem67);
-            this.materialListBox1.Items.Add(materialListBoxItem68);
-            this.materialListBox1.Items.Add(materialListBoxItem69);
-            this.materialListBox1.Items.Add(materialListBoxItem70);
-            this.materialListBox1.Items.Add(materialListBoxItem71);
-            this.materialListBox1.Items.Add(materialListBoxItem72);
+            materialListBoxItem13.SecondaryText = "";
+            materialListBoxItem13.Tag = null;
+            materialListBoxItem13.Text = "ListBoxItem1";
+            materialListBoxItem14.SecondaryText = "";
+            materialListBoxItem14.Tag = null;
+            materialListBoxItem14.Text = "ListBoxItem2";
+            materialListBoxItem15.SecondaryText = "";
+            materialListBoxItem15.Tag = null;
+            materialListBoxItem15.Text = "ListBoxItem3";
+            materialListBoxItem16.SecondaryText = "";
+            materialListBoxItem16.Tag = null;
+            materialListBoxItem16.Text = "ListBoxItem4";
+            materialListBoxItem17.SecondaryText = "";
+            materialListBoxItem17.Tag = null;
+            materialListBoxItem17.Text = "ListBoxItem5";
+            materialListBoxItem18.SecondaryText = "";
+            materialListBoxItem18.Tag = null;
+            materialListBoxItem18.Text = "ListBoxItem6";
+            this.materialListBox1.Items.Add(materialListBoxItem13);
+            this.materialListBox1.Items.Add(materialListBoxItem14);
+            this.materialListBox1.Items.Add(materialListBoxItem15);
+            this.materialListBox1.Items.Add(materialListBoxItem16);
+            this.materialListBox1.Items.Add(materialListBoxItem17);
+            this.materialListBox1.Items.Add(materialListBoxItem18);
             this.materialListBox1.Location = new System.Drawing.Point(38, 132);
             this.materialListBox1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialListBox1.Name = "materialListBox1";
