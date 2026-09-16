@@ -22,7 +22,7 @@ namespace MaterialSkinExample
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
 
             // MaterialSkinManager properties
-            materialSkinManager.AddFormToManage(this);
+            //materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
 
@@ -175,11 +175,6 @@ namespace MaterialSkinExample
                     builder.AppendFormat(" - Task {0}: Operation failed! A very very very very very very very very very very very very serious error has occured during this sub-operation. The errorcode is: {1}).\n", i, result);
                 }
             }
-
-            var batchOperationResults = builder.ToString();
-            batchOperationResults = "Simple text";
-            var mresult = MaterialMessageBox.Show(batchOperationResults, "Batch Operation", MessageBoxButtons.YesNoCancel, FlexibleMaterialForm.ButtonsPosition.Center);
-            materialComboBox1.Items.Add("this is a very long string");
         }
 
         private void materialSwitch9_CheckedChanged(object sender, EventArgs e)
@@ -189,15 +184,12 @@ namespace MaterialSkinExample
 
         private void materialTextBox2_LeadingIconClick(object sender, EventArgs e)
         {
-            MaterialSnackBar SnackBarMessage = new MaterialSnackBar("Leading Icon Click");
-            SnackBarMessage.Show(this);
-
+            
         }
 
         private void materialButton6_Click(object sender, EventArgs e)
         {
-            MaterialSnackBar SnackBarMessage = new MaterialSnackBar("SnackBar started succesfully", "OK", true);
-            SnackBarMessage.Show(this);
+            
         }
 
         private void materialSwitch10_CheckedChanged(object sender, EventArgs e)
@@ -258,14 +250,12 @@ namespace MaterialSkinExample
 
         private void materialTextBox21_LeadingIconClick(object sender, EventArgs e)
         {
-            MaterialSnackBar SnackBarMessage = new MaterialSnackBar("Leading Icon Click");
-            SnackBarMessage.Show(this);
+            
         }
 
         private void materialTextBox21_TrailingIconClick(object sender, EventArgs e)
         {
-            MaterialSnackBar SnackBarMessage = new MaterialSnackBar("Trailing Icon Click");
-            SnackBarMessage.Show(this);
+
         }
 
         private void MsReadOnly_CheckedChanged(object sender, EventArgs e)
@@ -275,11 +265,6 @@ namespace MaterialSkinExample
         
         private void materialButton25_Click(object sender, EventArgs e)
         {
-            MaterialDialog materialDialog = new MaterialDialog(this,"Dialog Title", "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.", "OK", true, "Cancel");
-            DialogResult result = materialDialog.ShowDialog(this);
-
-            MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(),750);
-            SnackBarMessage.Show(this);
 
         }
         

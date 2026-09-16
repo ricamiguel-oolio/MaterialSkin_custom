@@ -258,7 +258,6 @@ namespace MaterialSkin.Controls
             {
                 DrawShadows = false,
                 Type = MaterialButton.MaterialButtonType.Text,
-                UseAccentColor = _useAccentColor,
                 Enabled = ValidationButtonEnable,
                 Visible = _showValidationButtons,
                 Text = "SAVE"
@@ -267,7 +266,6 @@ namespace MaterialSkin.Controls
             {
                 DrawShadows = false,
                 Type = MaterialButton.MaterialButtonType.Text,
-                UseAccentColor = _useAccentColor,
                 Visible = _showValidationButtons,
                 Text = "CANCEL"
             };
@@ -640,7 +638,6 @@ namespace MaterialSkin.Controls
                     _validationButton.Height = _savebuttonBounds.Height;
                     _validationButton.Text = _validationButtonText;
                     _validationButton.Enabled = _savebuttonEnable;
-                    _validationButton.UseAccentColor = _useAccentColor;
                 }
                 if (_cancelButton != null)
                 {
@@ -649,7 +646,6 @@ namespace MaterialSkin.Controls
                     _cancelButton.Top = _cancelbuttonBounds.Top;
                     _cancelButton.Height = _cancelbuttonBounds.Height;
                     _cancelButton.Text = _cancelButtonText;
-                    _cancelButton.UseAccentColor = _useAccentColor;
                 }
             }
             if (_validationButton != null)

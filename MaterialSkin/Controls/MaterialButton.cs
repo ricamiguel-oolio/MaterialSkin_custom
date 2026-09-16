@@ -46,7 +46,7 @@ namespace MaterialSkin.Controls
 
         [Browsable(true)]
         [Category("Appearance")]
-        [DefaultValue(ImageLayout.Tile)]
+        [DefaultValue(ImageLayout.None)]
         public override ImageLayout BackgroundImageLayout
         {
             get { return base.BackgroundImageLayout; }
@@ -98,22 +98,40 @@ namespace MaterialSkin.Controls
             set { if (_textOffset == value) return; _textOffset = value; Invalidate(); }
         }
 
-        private Color _UseAccentColor_Color = Color.White;
-        [Category("Material Skin")]
-        [DefaultValue(typeof(Color), "")]
-        public Color UseAccentColor_Color
-        {
-            get { return _UseAccentColor_Color; }
-            set { if (_UseAccentColor_Color == value) return; _UseAccentColor_Color = value; Invalidate(); }
-        }
-
-        private Color _HighEmphasisColor = Color.White;
+        private Color _HighEmphasisColor = Color.Black;
         [Category("Material Skin")]
         [DefaultValue(typeof(Color), "")]
         public Color HighEmphasisColor
         {
             get { return _HighEmphasisColor; }
             set { if (_HighEmphasisColor == value) return; _HighEmphasisColor = value; Invalidate(); }
+        }
+
+        private Color _HighEmphasisForeColor = Color.White;
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Color), "")]
+        public Color HighEmphasisForeColor
+        {
+            get { return _HighEmphasisForeColor; }
+            set { if (_HighEmphasisForeColor == value) return; _HighEmphasisForeColor = value; Invalidate(); }
+        }
+
+        private Color _HighEmphasisHoverColor = Color.White.Darken(0.4f);
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Color), "")]
+        public Color HighEmphasisHoverColor
+        {
+            get { return _HighEmphasisHoverColor; }
+            set { if (_HighEmphasisHoverColor == value) return; _HighEmphasisHoverColor = value; Invalidate(); }
+        }
+
+        private Color _HoverColor = Color.White.Darken(0.4f);
+        [Category("Material Skin")]
+        [DefaultValue(typeof(Color), "")]
+        public Color HoverColor
+        {
+            get { return _HoverColor; }
+            set { if (_HoverColor == value) return; _HoverColor = value; Invalidate(); }
         }
 
         private void DrawButtonBackgroundImage(Graphics g, GraphicsPath buttonPath)
@@ -207,7 +225,6 @@ namespace MaterialSkin.Controls
         public enum MaterialButtonType
         {
             Text,
-            Outlined,
             Contained
         }
 
@@ -219,13 +236,6 @@ namespace MaterialSkin.Controls
 
         [Browsable(false)]
         public Color NoAccentTextColor { get; set; }
-
-        [Category("Material Skin")]
-        public bool UseAccentColor
-        {
-            get { return useAccentColor; }
-            set { useAccentColor = value; Invalidate(); }
-        }
 
         [Category("Material Skin")]
         /// <summary>
@@ -358,7 +368,6 @@ namespace MaterialSkin.Controls
 
         private bool drawShadows;
         private bool highEmphasis;
-        private bool useAccentColor;
         private MaterialButtonType type;
         private MaterialButtonDensity _density;
 
@@ -396,8 +405,7 @@ namespace MaterialSkin.Controls
         public MaterialButton()
         {
             DrawShadows = true;
-            HighEmphasis = true;
-            UseAccentColor = false;
+            HighEmphasis = false;
             Type = MaterialButtonType.Contained;
             Density = MaterialButtonDensity.Default;
             NoAccentTextColor = Color.Empty;
@@ -410,8 +418,8 @@ namespace MaterialSkin.Controls
             };
             _hoverAnimationManager = new AnimationManager
             {
-                Increment = 0.12,
-                AnimationType = AnimationType.Linear
+                Increment = 0.03,
+                AnimationType = AnimationType.EaseOut
             };
             _focusAnimationManager = new AnimationManager
             {
@@ -590,8 +598,7 @@ namespace MaterialSkin.Controls
 
             double hoverAnimProgress = _hoverAnimationManager.GetProgress();
             double focusAnimProgress = _focusAnimationManager.GetProgress();
-            SolidBrush colorBack = new SolidBrush(UseAccentColor ? UseAccentColor_Color : BackColor);
-            SolidBrush colorEmph = new SolidBrush(HighEmphasis ? HighEmphasisColor : BackColor);
+            SolidBrush colorBack = new SolidBrush(HighEmphasis ? HighEmphasisColor : BackColor);
 
             g.Clear(Parent.BackColor);
 
@@ -601,11 +608,11 @@ namespace MaterialSkin.Controls
             buttonRectF.Y -= 0.5f;
             GraphicsPath buttonPath = DrawHelper.CreateRoundRect(buttonRectF, Radius);
 
-            // button shadow (blend with form shadow)
-            DrawHelper.DrawSquareShadow(g, ClientRectangle, Radius);
-
             if (Type == MaterialButtonType.Contained)
             {
+                // button shadow (blend with form shadow)
+                DrawHelper.DrawSquareShadow(g, ClientRectangle, Radius);
+
                 // draw button rect
                 // Disabled
                 if (!Enabled)
@@ -615,19 +622,11 @@ namespace MaterialSkin.Controls
                         g.FillPath(disabledBrush, buttonPath);
                     }
                 }
-                // High emphasis
-                else if (HighEmphasis)
-                {
-                    g.FillPath(colorEmph, buttonPath);
-                }
-                // Mormal
                 else
                 {
-                    using (SolidBrush normalBrush = new SolidBrush(SkinManager.BackgroundColor))
-                    {
-                        g.FillPath(normalBrush, buttonPath);
-                    }
+                    g.FillPath(colorBack, buttonPath);
                 }
+
             }
 
             DrawButtonBackgroundImage(g, buttonPath);
@@ -635,40 +634,35 @@ namespace MaterialSkin.Controls
             //Hover
             if (hoverAnimProgress > 0)
             {
-                using (SolidBrush hoverBrush = new SolidBrush(Color.FromArgb(
-                    (int)(HighEmphasis && Type == MaterialButtonType.Contained ? hoverAnimProgress * 80 : hoverAnimProgress * SkinManager.BackgroundHoverColor.A), (UseAccentColor ? (HighEmphasis && Type == MaterialButtonType.Contained ?
-                    SkinManager.ColorScheme.AccentColor.Lighten(0.5f) : // Contained with Emphasis - with accent
-                    SkinManager.ColorScheme.AccentColor) : // Not Contained Or Low Emphasis - with accent
-                    (Type == MaterialButtonType.Contained && HighEmphasis ? SkinManager.ColorScheme.LightPrimaryColor : // Contained with Emphasis without accent
-                    SkinManager.ColorScheme.PrimaryColor)).RemoveAlpha()))) // Normal or Emphasis without accent
+                Color thisHoverColor = HighEmphasis ? HighEmphasisHoverColor : HoverColor;
+                using (SolidBrush hoverBrush = new SolidBrush(Color.FromArgb((int) hoverAnimProgress * 80, thisHoverColor))) // Normal or Emphasis without accent
                 {
                     g.FillPath(hoverBrush, buttonPath);
                 }
             }
 
             //Focus
-            if (focusAnimProgress > 0)
-            {
-                using (SolidBrush focusBrush = new SolidBrush(Color.FromArgb(
-                    (int)(HighEmphasis && Type == MaterialButtonType.Contained ? focusAnimProgress * 80 : focusAnimProgress * SkinManager.BackgroundFocusColor.A), (UseAccentColor ? (HighEmphasis && Type == MaterialButtonType.Contained ?
-                    SkinManager.ColorScheme.AccentColor.Lighten(0.5f) : // Contained with Emphasis - with accent
-                    SkinManager.ColorScheme.AccentColor) : // Not Contained Or Low Emphasis - with accent
-                    (Type == MaterialButtonType.Contained && HighEmphasis ? SkinManager.ColorScheme.LightPrimaryColor : // Contained with Emphasis without accent
-                    SkinManager.ColorScheme.PrimaryColor)).RemoveAlpha()))) // Normal or Emphasis without accent
-                {
-                    g.FillPath(focusBrush, buttonPath);
-                }
-            }
+            //if (focusAnimProgress > 0)
+            //{
+            //    using (SolidBrush focusBrush = new SolidBrush(Color.FromArgb((int)(HighEmphasis && Type == MaterialButtonType.Contained ? focusAnimProgress * 80 : focusAnimProgress * SkinManager.BackgroundFocusColor.A), (UseAccentColor ? (HighEmphasis && Type == MaterialButtonType.Contained ?
+            //        SkinManager.ColorScheme.AccentColor.Lighten(0.5f) : // Contained with Emphasis - with accent
+            //        SkinManager.ColorScheme.AccentColor) : // Not Contained Or Low Emphasis - with accent
+            //        (Type == MaterialButtonType.Contained && HighEmphasis ? SkinManager.ColorScheme.LightPrimaryColor : // Contained with Emphasis without accent
+            //        SkinManager.ColorScheme.PrimaryColor)).RemoveAlpha()))) // Normal or Emphasis without accent
+            //    {
+            //        g.FillPath(focusBrush, buttonPath);
+            //    }
+            //}
 
-            if (Type == MaterialButtonType.Outlined)
-            {
-                using (Pen outlinePen = new Pen(Enabled ? SkinManager.DividersAlternativeColor : SkinManager.DividersColor, 1))
-                {
-                    buttonRectF.X += 0.5f;
-                    buttonRectF.Y += 0.5f;
-                    g.DrawPath(outlinePen, buttonPath);
-                }
-            }
+            //if (Type == MaterialButtonType.Outlined)
+            //{
+            //    using (Pen outlinePen = new Pen(Enabled ? SkinManager.DividersAlternativeColor : SkinManager.DividersColor, 1))
+            //    {
+            //        buttonRectF.X += 0.5f;
+            //        buttonRectF.Y += 0.5f;
+            //        g.DrawPath(outlinePen, buttonPath);
+            //    }
+            //}
 
             //Ripple
             if (_animationManager.IsAnimating())
@@ -680,13 +674,7 @@ namespace MaterialSkin.Controls
                     var animationValue = _animationManager.GetProgress(i);
                     var animationSource = _animationManager.GetSource(i);
 
-                    using (Brush rippleBrush = new SolidBrush(
-                        Color.FromArgb((int)(100 - (animationValue * 100)), // Alpha animation
-                        (Type == MaterialButtonType.Contained && HighEmphasis ? (UseAccentColor ?
-                            SkinManager.ColorScheme.AccentColor.Lighten(0.5f) : // Emphasis with accent
-                            SkinManager.ColorScheme.LightPrimaryColor) : // Emphasis
-                            (UseAccentColor ? SkinManager.ColorScheme.AccentColor : // Normal with accent
-                            SkinManager.Theme == MaterialSkinManager.Themes.LIGHT ? SkinManager.ColorScheme.PrimaryColor : SkinManager.ColorScheme.LightPrimaryColor))))) // Normal
+                    using (Brush rippleBrush = new SolidBrush(Color.FromArgb((int)(100 - (animationValue * 100)), BackColor.Lighten(0.5f)))) // Normal
                     {
                         var rippleSize = (int)(animationValue * Width * 2);
                         g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize));
@@ -705,7 +693,7 @@ namespace MaterialSkin.Controls
 
             textRect.Offset(TextOffset);
 
-            Color textColor = ForeColor;
+            Color textColor = (HighEmphasis ? HighEmphasisForeColor : ForeColor);
 
             using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
             {
